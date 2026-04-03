@@ -1,49 +1,52 @@
 # DECTA-ML-stroke
 
-## Description
-This repository provides the code used in the study:
+## Overview
 
-“Multimodal Machine Learning Incorporating Dual-Energy CT Plaque and Perivascular Adipose Tissue Parameters for Predicting Acute Ischemic Stroke: A Dual-Center Study”.
+This repository contains the complete analysis code for the manuscript:
+
+> **Multimodal Machine Learning Incorporating Dual-Energy CT Plaque and Perivascular Adipose Tissue Parameters for Predicting Acute Ischemic Stroke: A Dual-Center Study**
+
+The code implements a machine learning pipeline that integrates dual-energy CT angiography (DECTA)-derived intraplaque and perivascular adipose tissue (PVAT) parameters with clinical biomarkers to predict acute ischemic stroke risk.
 
 ## Study Design
-A dual-center retrospective study with:
-- Training cohort (Center 1)
-- Independent external validation cohort (Center 2)
 
-## Workflow
-1. Data preprocessing  
-   - Z-score normalization based on the training cohort  
+- **Training cohort** (Center 1, n=137) and **external validation cohort** (Center 2, n=75)
+- Feature selection via LASSO regression
+- Four candidate models compared: Logistic Regression, Random Forest, XGBoost, and SVM
+- Final model selected by a composite scoring system integrating AUC, Brier score, and net benefit
 
-2. Feature selection  
-   - LASSO regression with 10-fold cross-validation  
+## Notebook Structure
 
-3. Model development  
-   - Logistic Regression  
-   - Random Forest  
-   - XGBoost  
-   - Support Vector Machine (SVM)  
+The analysis is organized in a single Jupyter Notebook (`V9-SVW-Dual-Center-Code-English.ipynb`) with the following sections:
 
-4. Hyperparameter tuning  
-   - Grid search with 10-fold cross-validation  
+| Part | Description |
+|------|-------------|
+| 1 | Data preprocessing and standardization |
+| 2 | Between-group statistical comparison |
+| 3 | LASSO feature selection |
+| 4 | Model training with cross-validation and composite scoring |
+| 5 | Final SVM model construction |
+| 6–7 | Model evaluation on training and test sets (ROC, PR, calibration, DCA) |
+| 8–9 | SHAP interpretability analysis |
+| 10 | Risk stratification |
 
-5. Model evaluation  
-   - Discrimination: AUC  
-   - Calibration: Brier score  
-   - Clinical utility: Net benefit (decision curve analysis)  
+## Requirements
 
-6. Model selection  
-   - Composite scoring system integrating AUC, Brier score, and Net benefit  
+- Python ≥ 3.8
+- Key packages: `scikit-learn`, `xgboost`, `shap`, `pandas`, `numpy`, `scipy`, `statsmodels`, `matplotlib`, `seaborn`
 
-7. External validation  
-   - Independent cohort evaluation  
+Install all dependencies:
 
-## Notes
-- Patient data are not publicly available due to privacy restrictions  
-- The code can be executed with user-provided datasets following the same structure  
+```bash
+pip install pandas numpy scikit-learn xgboost shap scipy statsmodels matplotlib seaborn joblib
+```
 
-## Environment
-Python 3.13  
-Key packages: scikit-learn, xgboost, shap, pandas, numpy  
+## Reproducing the Analysis
+
+1. Place the source data file (`MX.xlsx`,`YZJ.xlsx` ) in the project directory.
+2. Open and run `V9-SVW-Dual-Center-Code-English.ipynb` sequentially.
+3. All figures and evaluation outputs are generated automatically.
 
 ## Contact
-For questions, please contact the corresponding author.
+
+Yankai Meng — mengyankai@126.com
